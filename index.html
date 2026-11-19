@@ -10,8 +10,8 @@
             --bg-top: #d7eef8;
             --bg-mid: #e6f5f0;
             --bg-bottom: #d9ece4;
-            --glass-bg: rgba(255, 255, 255, 0.76);
-            --glass-border: rgba(255, 255, 255, 0.85);
+            --glass-bg: rgba(255, 255, 255, 0.78);
+            --glass-border: rgba(255, 255, 255, 0.88);
             --glass-shadow: 0 8px 32px rgba(31, 88, 115, 0.08);
             --primary: #1b7fa6;
             --primary-soft: #2a9bc4;
@@ -20,7 +20,7 @@
             --accent-sky: #e4f3fa;
             --text-dark: #1e3542;
             --text-muted: #4b6775;
-            --trick-bg: rgba(232, 248, 241, 0.85);
+            --trick-bg: rgba(232, 248, 241, 0.88);
             --trick-border: #3ba37c;
         }
 
@@ -41,7 +41,7 @@
             overflow-x: hidden;
         }
 
-        /* Frutiger Aero Subtle SVG Background (Hills, Bubbles & Soft Sunbeams) */
+        /* Frutiger Aero Subtle SVG Background */
         .aero-bg {
             position: fixed;
             top: 0;
@@ -50,7 +50,7 @@
             height: 100%;
             z-index: -1;
             pointer-events: none;
-            opacity: 0.55; /* Soft so it won't distract studying */
+            opacity: 0.55;
         }
 
         /* Glossy Aero Header */
@@ -104,7 +104,7 @@
             font-size: 0.98rem;
         }
 
-        /* Navigation Tabs (Glossy Pills) */
+        /* Navigation Tabs */
         .nav-tabs {
             display: flex;
             justify-content: center;
@@ -187,9 +187,13 @@
 
         h3 {
             color: #1c6a8a;
-            margin-top: 1.4rem;
-            margin-bottom: 0.5rem;
-            font-size: 1.15rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.6rem;
+            font-size: 1.18rem;
+            background: linear-gradient(90deg, rgba(224, 243, 252, 0.8), transparent);
+            padding: 0.35rem 0.75rem;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 8px 8px 0;
         }
 
         /* Formula Boxes */
@@ -201,7 +205,7 @@
         }
 
         .formula-box {
-            background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(228, 244, 252, 0.85) 100%);
+            background: linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(228, 244, 252, 0.85) 100%);
             border: 1px solid #bce2f2;
             border-left: 4px solid var(--primary);
             border-radius: 10px;
@@ -215,14 +219,32 @@
             letter-spacing: 0.5px;
             color: var(--primary);
             font-weight: 700;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.35rem;
         }
 
         .formula-math {
             font-family: 'Cambria Math', 'Segoe UI', monospace;
-            font-size: 1.02rem;
+            font-size: 0.98rem;
             font-weight: 600;
             color: #133c4e;
+            line-height: 1.55;
+        }
+
+        /* Matrix Inline Styling */
+        .matrix {
+            display: inline-table;
+            vertical-align: middle;
+            border-left: 1.5px solid #133c4e;
+            border-right: 1.5px solid #133c4e;
+            border-radius: 4px;
+            padding: 0 5px;
+            margin: 0 2px;
+            font-size: 0.88rem;
+            line-height: 1.25;
+            text-align: center;
+        }
+        .matrix span {
+            display: block;
         }
 
         /* Fast Trick / Cara Cepat Box */
@@ -232,7 +254,7 @@
             border-left: 5px solid var(--trick-border);
             border-radius: 12px;
             padding: 1.2rem 1.3rem;
-            margin: 1.3rem 0;
+            margin: 1.4rem 0;
         }
 
         .trick-header {
@@ -248,7 +270,7 @@
         /* Table Styling */
         .table-wrap {
             overflow-x: auto;
-            margin: 1rem 0;
+            margin: 0.8rem 0 1.2rem;
             border-radius: 10px;
             border: 1px solid #c5e3f0;
         }
@@ -256,26 +278,27 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            background: rgba(255, 255, 255, 0.85);
-            font-size: 0.93rem;
+            background: rgba(255, 255, 255, 0.88);
+            font-size: 0.92rem;
         }
 
         th {
             background: linear-gradient(180deg, #dff1fa 0%, #cce8f6 100%);
             color: #135470;
             text-align: left;
-            padding: 0.7rem 0.9rem;
+            padding: 0.65rem 0.85rem;
             font-weight: 700;
         }
 
         td {
-            padding: 0.65rem 0.9rem;
+            padding: 0.6rem 0.85rem;
             border-top: 1px solid #e1f0f7;
+            vertical-align: middle;
         }
 
-        /* Examples (Mudah, Sedang, Sulit) */
+        /* Examples */
         .example-item {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.78);
             border: 1px solid #d4eaf5;
             border-radius: 12px;
             padding: 1.1rem 1.25rem;
@@ -303,9 +326,9 @@
             font-size: 0.95rem;
         }
 
-        /* Practice Quiz (Optional / Self-Paced) */
+        /* Practice Quiz */
         .quiz-item {
-            background: rgba(255, 255, 255, 0.82);
+            background: rgba(255, 255, 255, 0.85);
             border: 1px solid #cde4f0;
             border-radius: 12px;
             padding: 1.15rem;
@@ -408,22 +431,16 @@
                 <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
             </linearGradient>
         </defs>
-        <!-- Soft Light Beams -->
         <polygon points="0,0 450,0 850,900 200,900" fill="url(#sunBeam)"/>
         <polygon points="600,0 950,0 1440,700 1100,900" fill="url(#sunBeam)"/>
-        <!-- Rolling Soft Aero Hills -->
         <path d="M-100,760 Q360,610 820,750 T1550,690 L1550,950 L-100,950 Z" fill="url(#hill2)"/>
         <path d="M-100,820 Q480,690 980,810 T1550,760 L1550,950 L-100,950 Z" fill="url(#hill1)"/>
-        <!-- Glossy Water Bubbles -->
         <circle cx="160" cy="190" r="65" fill="url(#bubbleGrad)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.6"/>
         <ellipse cx="140" cy="168" rx="18" ry="10" transform="rotate(-25 140 168)" fill="#ffffff" fill-opacity="0.75"/>
-        
         <circle cx="1260" cy="240" r="90" fill="url(#bubbleGrad)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.55"/>
         <ellipse cx="1232" cy="210" rx="25" ry="13" transform="rotate(-25 1232 210)" fill="#ffffff" fill-opacity="0.7"/>
-
         <circle cx="1140" cy="610" r="48" fill="url(#bubbleGrad)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.5"/>
         <ellipse cx="1125" cy="595" rx="12" ry="6" transform="rotate(-25 1125 595)" fill="#ffffff" fill-opacity="0.7"/>
-
         <circle cx="240" cy="580" r="38" fill="url(#bubbleGrad)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.5"/>
         <circle cx="820" cy="130" r="28" fill="url(#bubbleGrad)" stroke="#ffffff" stroke-width="1" stroke-opacity="0.5"/>
     </svg>
@@ -532,8 +549,7 @@
                 <h2>Latihan Mandiri (5 Soal — Opsional)</h2>
                 <p style="font-size:0.9rem; color:var(--text-muted);">Pilih jawaban yang menurutmu paling tepat, lalu klik tombol cek untuk melihat hasil dan pembahasannya.</p>
 
-                <!-- Soal 1 -->
-                <div class="quiz-item" id="b1_q1">
+                <div class="quiz-item">
                     <strong>1.</strong> Jika <em>f(x) = 2x + 1</em> dan <em>g(x) = x<sup>2</sup> - 3</em>, maka <em>(g ∘ f)(x)</em> adalah...
                     <div class="quiz-options">
                         <label><input type="radio" name="b1q1" value="A"> A. 2x<sup>2</sup> - 5</label>
@@ -544,7 +560,6 @@
                     <div class="quiz-feedback" id="fb_b1q1"></div>
                 </div>
 
-                <!-- Soal 2 -->
                 <div class="quiz-item">
                     <strong>2.</strong> Invers dari fungsi <em>f(x) = 5x - 10</em> adalah...
                     <div class="quiz-options">
@@ -556,7 +571,6 @@
                     <div class="quiz-feedback" id="fb_b1q2"></div>
                 </div>
 
-                <!-- Soal 3 -->
                 <div class="quiz-item">
                     <strong>3.</strong> Diketahui <em>f(x) = (3x - 2) / (x + 4)</em>. Nilai dari <em>f<sup>-1</sup>(2)</em> adalah...
                     <div class="quiz-options">
@@ -568,7 +582,6 @@
                     <div class="quiz-feedback" id="fb_b1q3"></div>
                 </div>
 
-                <!-- Soal 4 -->
                 <div class="quiz-item">
                     <strong>4.</strong> Jika <em>(f ∘ g)(x) = 6x + 5</em> dan <em>f(x) = 2x - 1</em>, maka <em>g(x)</em> adalah...
                     <div class="quiz-options">
@@ -580,7 +593,6 @@
                     <div class="quiz-feedback" id="fb_b1q4"></div>
                 </div>
 
-                <!-- Soal 5 -->
                 <div class="quiz-item">
                     <strong>5.</strong> Diketahui <em>f<sup>-1</sup>(x) = x + 3</em> dan <em>g<sup>-1</sup>(x) = 2x - 1</em>. Nilai dari <em>(f ∘ g)<sup>-1</sup>(2)</em> adalah...
                     <div class="quiz-options">
@@ -751,118 +763,173 @@
         </section>
 
         <!-- ========================================================= -->
-        <!-- BAB 3: TRANSFORMASI GEOMETRI                              -->
+        <!-- BAB 3: TRANSFORMASI GEOMETRI (LENGKAP 4 BAGIAN + MATRIKS) -->
         <!-- ========================================================= -->
         <section id="bab3" class="tab-content">
             <div class="glass-card">
-                <h2>3. Penjelasan Detail: Transformasi Geometri</h2>
-                <p><strong>Transformasi Geometri</strong> adalah proses perpindahan atau perubahan posisi, arah, maupun ukuran suatu objek geometri (titik, garis, atau kurva) pada bidang koordinat Cartesius <em>(x, y)</em> menjadi bayangan baru <strong>(x', y')</strong>.</p>
-                <ol>
-                    <li><strong>Translasi (Pergeseran):</strong> Memindahkan setiap titik dengan jarak dan arah yang sama tanpa mengubah bentuk atau ukuran.</li>
-                    <li><strong>Refleksi (Pencerminan):</strong> Memindahkan titik menggunakan sifat cermin datar (jarak objek ke cermin sama dengan jarak cermin ke bayangan).</li>
-                    <li><strong>Rotasi (Perputaran):</strong> Memutar titik terhadap suatu titik pusat tertentu sejauh sudut <em>θ</em>. Sudut positif (+) berarti berlawanan arah jarum jam, sedangkan negatif (-) searah jarum jam.</li>
-                    <li><strong>Dilatasi (Perkalian/Perbesaran):</strong> Mengubah ukuran objek (memperbesar atau memperkecil) berdasarkan titik pusat dan faktor skala <em>k</em>.</li>
-                </ol>
+                <h2>3. Penjelasan Detail & Rumus Lengkap: Transformasi Geometri</h2>
+                <p><strong>Transformasi Geometri</strong> adalah proses perpindahan atau perubahan posisi, arah, maupun ukuran suatu objek geometri (titik, garis, atau kurva) pada bidang koordinat Cartesius <em>P(x, y)</em> menjadi bayangan baru <strong>P'(x', y')</strong>. Terdapat <strong>4 jenis utama</strong> transformasi geometri:</p>
 
-                <h3>Tabel Rumus Lengkap Transformasi Titik P(x, y)</h3>
+                <!-- BAGIAN A: TRANSLASI -->
+                <h3>A. Translasi (Pergeseran)</h3>
+                <p><strong>Translasi</strong> adalah transformasi yang memindahkan setiap titik pada bidang menurut jarak dan arah tertentu tanpa mengubah bentuk maupun ukuran bangun (bersifat <em>isometri</em>). Translasi diwakili oleh vektor geser <strong>T = (a, b)</strong>, di mana <em>a</em> menyatakan pergeseran horizontal (kanan +, kiri -) dan <em>b</em> menyatakan pergeseran vertikal (atas +, bawah -).</p>
+                <div class="formula-grid">
+                    <div class="formula-box">
+                        <div class="formula-title">Rumus Translasi Titik P(x, y) oleh T(a, b)</div>
+                        <div class="formula-math">P(x, y) → <strong>P'(x + a, y + b)</strong><br>x' = x + a   |   y' = y + b</div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="formula-title">Komposisi Translasi T<sub>1</sub>(a, b) dilanjutkan T<sub>2</sub>(c, d)</div>
+                        <div class="formula-math">T<sub>total</sub> = T<sub>1</sub> + T<sub>2</sub> = (a + c, b + d)<br><strong>P''(x + a + c, y + b + d)</strong></div>
+                    </div>
+                </div>
+
+                <!-- BAGIAN B: REFLEKSI -->
+                <h3>B. Refleksi (Pencerminan)</h3>
+                <p><strong>Refleksi</strong> adalah transformasi yang memindahkan setiap titik dengan menggunakan sifat bayangan cermin datar: jarak titik asal ke cermin sama dengan jarak bayangan ke cermin, dan garis penghubung keduanya tegak lurus terhadap cermin.</p>
                 <div class="table-wrap">
                     <table>
                         <thead>
                             <tr>
-                                <th>Jenis Transformasi</th>
-                                <th>Keterangan / Cermin / Pusat</th>
-                                <th>Bayangan P'(x', y')</th>
+                                <th>Cermin / Sumbu Refleksi</th>
+                                <th>Bayangan Titik P'(x', y')</th>
+                                <th>Matriks Transformasi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Translasi</strong></td>
-                                <td>Digeser oleh vektor T = (a, b)</td>
-                                <td><strong>(x + a, y + b)</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Refleksi</strong></td>
-                                <td>Terhadap Sumbu-X (garis y = 0)</td>
+                                <td>Sumbu-X (garis <em>y = 0</em>)</td>
                                 <td><strong>(x, -y)</strong></td>
+                                <td><span class="matrix"><span>1   0</span><span>0  -1</span></span></td>
                             </tr>
                             <tr>
-                                <td><strong>Refleksi</strong></td>
-                                <td>Terhadap Sumbu-Y (garis x = 0)</td>
+                                <td>Sumbu-Y (garis <em>x = 0</em>)</td>
                                 <td><strong>(-x, y)</strong></td>
+                                <td><span class="matrix"><span>-1  0</span><span>0   1</span></span></td>
                             </tr>
                             <tr>
-                                <td><strong>Refleksi</strong></td>
-                                <td>Terhadap Titik Asal O(0, 0)</td>
+                                <td>Titik Asal <em>O(0, 0)</em></td>
                                 <td><strong>(-x, -y)</strong></td>
+                                <td><span class="matrix"><span>-1   0</span><span>0  -1</span></span></td>
                             </tr>
                             <tr>
-                                <td><strong>Refleksi</strong></td>
-                                <td>Terhadap Garis y = x</td>
+                                <td>Garis <em>y = x</em></td>
                                 <td><strong>(y, x)</strong></td>
+                                <td><span class="matrix"><span>0  1</span><span>1  0</span></span></td>
                             </tr>
                             <tr>
-                                <td><strong>Refleksi</strong></td>
-                                <td>Terhadap Garis y = -x</td>
+                                <td>Garis <em>y = -x</em></td>
                                 <td><strong>(-y, -x)</strong></td>
+                                <td><span class="matrix"><span>0  -1</span><span>-1  0</span></span></td>
                             </tr>
                             <tr>
-                                <td><strong>Refleksi</strong></td>
-                                <td>Terhadap Garis x = h</td>
+                                <td>Garis Vertikal <em>x = h</em></td>
                                 <td><strong>(2h - x, y)</strong></td>
+                                <td><em>(Bukan transformasi linear pusat O)</em></td>
                             </tr>
                             <tr>
-                                <td><strong>Refleksi</strong></td>
-                                <td>Terhadap Garis y = k</td>
+                                <td>Garis Horizontal <em>y = k</em></td>
                                 <td><strong>(x, 2k - y)</strong></td>
+                                <td><em>(Bukan transformasi linear pusat O)</em></td>
                             </tr>
                             <tr>
-                                <td><strong>Rotasi O(0,0)</strong></td>
-                                <td>Sudut +90° atau -270°</td>
-                                <td><strong>(-y, x)</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Rotasi O(0,0)</strong></td>
-                                <td>Sudut -90° atau +270°</td>
-                                <td><strong>(y, -x)</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Rotasi O(0,0)</strong></td>
-                                <td>Sudut ±180°</td>
-                                <td><strong>(-x, -y)</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Rotasi Pusat (a, b)</strong></td>
-                                <td>Sudut θ berlawanan jarum jam</td>
-                                <td>x' = a + (x-a)cosθ - (y-b)sinθ<br>y' = b + (x-a)sinθ + (y-b)cosθ</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Dilatasi O(0,0)</strong></td>
-                                <td>Faktor skala k</td>
-                                <td><strong>(k·x, k·y)</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Dilatasi Pusat (a, b)</strong></td>
-                                <td>Faktor skala k</td>
-                                <td><strong>(a + k(x - a), b + k(y - b))</strong></td>
+                                <td>Titik Pusat Tertentu <em>A(a, b)</em></td>
+                                <td><strong>(2a - x, 2b - y)</strong></td>
+                                <td><em>(Setengah putaran pusat A)</em></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
+                <!-- BAGIAN C: ROTASI -->
+                <h3>C. Rotasi (Perputaran)</h3>
+                <p><strong>Rotasi</strong> adalah transformasi yang memutar setiap titik pada bidang terhadap suatu titik pusat tertentu sejauh sudut putar <strong>θ</strong>. Perjanjian arah sudut: <strong>positif (+)</strong> berarti berlawanan arah jarum jam, sedangkan <strong>negatif (-)</strong> berarti searah jarum jam.</p>
+                <div class="formula-grid">
+                    <div class="formula-box">
+                        <div class="formula-title">Rotasi Pusat O(0, 0) Sejauh Sudut θ</div>
+                        <div class="formula-math">
+                            x' = x·cosθ - y·sinθ<br>
+                            y' = x·sinθ + y·cosθ<br>
+                            Matriks: <span class="matrix"><span>cosθ  -sinθ</span><span>sinθ   cosθ</span></span>
+                        </div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="formula-title">Rotasi Pusat P(a, b) Sejauh Sudut θ</div>
+                        <div class="formula-math">
+                            x' = a + (x - a)cosθ - (y - b)sinθ<br>
+                            y' = b + (x - a)sinθ + (y - b)cosθ
+                        </div>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sudut Istimewa Rotasi</th>
+                                <th>Bayangan Pusat O(0, 0)</th>
+                                <th>Bayangan Pusat P(a, b)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>+90°</strong> (atau <strong>-270°</strong>)</td>
+                                <td><strong>(-y, x)</strong></td>
+                                <td><strong>(a - (y - b), b + (x - a))</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>-90°</strong> (atau <strong>+270°</strong>)</td>
+                                <td><strong>(y, -x)</strong></td>
+                                <td><strong>(a + (y - b), b - (x - a))</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>+180°</strong> (atau <strong>-180°</strong>)</td>
+                                <td><strong>(-x, -y)</strong></td>
+                                <td><strong>(2a - x, 2b - y)</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- BAGIAN D: DILATASI -->
+                <h3>D. Dilatasi (Perkalian / Perubahan Skala)</h3>
+                <p><strong>Dilatasi</strong> adalah transformasi yang mengubah ukuran (memperbesar atau memperkecil) suatu bangun geometri berdasarkan titik pusat tertentu dan <strong>faktor skala (k)</strong>. Jika <em>|k| > 1</em> bangun diperbesar, jika <em>0 < |k| < 1</em> bangun diperkecil, dan jika <em>k < 0</em> arah bangun berbalik berlawanan dari titik pusat.</p>
+                <div class="formula-grid">
+                    <div class="formula-box">
+                        <div class="formula-title">Dilatasi Pusat O(0, 0) dengan Skala k</div>
+                        <div class="formula-math">
+                            P(x, y) → <strong>P'(k·x, k·y)</strong><br>
+                            Matriks: <span class="matrix"><span>k  0</span><span>0  k</span></span>
+                        </div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="formula-title">Dilatasi Pusat A(a, b) dengan Skala k</div>
+                        <div class="formula-math">
+                            x' = a + k(x - a)<br>
+                            y' = b + k(y - b)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BAGIAN E: KOMPOSISI & TRIK KILAT -->
                 <div class="trick-box">
                     <div class="trick-header">⚡ Cara Cepat & Rumus Kilat Transformasi Geometri</div>
                     <ul>
-                        <li><strong>Trik Mencari Bayangan Garis / Kurva:</strong><br>
-                        1. Tentukan rumus bayangan <em>x'</em> dan <em>y'</em>.<br>
-                        2. Ubah menjadi bentuk <strong>x = ...</strong> dan <strong>y = ...</strong>.<br>
-                        3. Substitusikan <em>x</em> dan <em>y</em> yang baru ke dalam persamaan garis/kurva awal, lalu hilangkan tanda aksen (').</li>
-                        <li><strong>Trik Translasi Garis <em>Ax + By = C</em> oleh T(a, b):</strong><br>
-                        Langsung tulis: <strong>A(x - a) + B(y - b) = C</strong> (perhatikan tanda kurang pada <em>a</em> dan <em>b</em>!).</li>
-                        <li><strong>Trik Luas Bangun Hasil Transformasi Matriks M:</strong><br>
-                        Jika suatu bangun datar berluas <strong>L</strong> ditransformasikan oleh matriks <strong>M</strong> (atau dilatasi skala <em>k</em>), maka:<br>
-                        <strong>Luas Bayangan = |det(M)| × L</strong> (untuk dilatasi skala <em>k</em>, <strong>Luas Bayangan = k<sup>2</sup> × L</strong>).</li>
-                        <li><strong>Komposisi Transformasi Matriks:</strong><br>
-                        Jika titik ditransformasi oleh M<sub>1</sub> lalu dilanjutkan M<sub>2</sub>, perkalian matriksnya dibalik: <strong>M<sub>total</sub> = M<sub>2</sub> × M<sub>1</sub></strong>.</li>
+                        <li><strong>Komposisi Dua Refleksi Sejajar (Sama-sama x = ... atau y = ...):</strong><br>
+                        • Refleksi garis <em>x = h<sub>1</sub></em> dilanjutkan <em>x = h<sub>2</sub></em> → Sama dengan <strong>Translasi T = (2(h<sub>2</sub> - h<sub>1</sub>), 0)</strong>.<br>
+                        • Refleksi garis <em>y = k<sub>1</sub></em> dilanjutkan <em>y = k<sub>2</sub></em> → Sama dengan <strong>Translasi T = (0, 2(k<sub>2</sub> - k<sub>1</sub>))</strong>.</li>
+                        <li><strong>Komposisi Dua Refleksi Saling Tegak Lurus (<em>x = h</em> dan <em>y = k</em>):</strong><br>
+                        → Sama dengan <strong>Rotasi 180° dengan pusat perpotongan (h, k)</strong>, bayangannya: <strong>(2h - x, 2k - y)</strong>.</li>
+                        <li><strong>Komposisi Dua Rotasi Sepusat:</strong><br>
+                        Rotasi sudut <em>θ<sub>1</sub></em> dilanjutkan sudut <em>θ<sub>2</sub></em> pada pusat yang sama → Cukup jumlahkan sudutnya: <strong>Rotasi (θ<sub>1</sub> + θ<sub>2</sub>)</strong>.</li>
+                        <li><strong>Komposisi Dua Dilatasi Sepusat:</strong><br>
+                        Dilatasi skala <em>k<sub>1</sub></em> dilanjutkan skala <em>k<sub>2</sub></em> pada pusat yang sama → Cukup kalikan skalanya: <strong>Dilatasi (k<sub>1</sub> × k<sub>2</sub>)</strong>.</li>
+                        <li><strong>Trik Cepat Translasi Garis <em>Ax + By = C</em> oleh T(a, b):</strong><br>
+                        Langsung ganti <em>x</em> dan <em>y</em>: <strong>A(x - a) + B(y - b) = C</strong>.</li>
+                        <li><strong>Trik Luas Bangun Hasil Transformasi Matriks M atau Dilatasi k:</strong><br>
+                        • Oleh matriks M = <span class="matrix"><span>a  b</span><span>c  d</span></span> → <strong>Luas Bayangan = |ad - bc| × Luas Awal</strong>.<br>
+                        • Oleh dilatasi faktor skala <em>k</em> → <strong>Luas Bayangan = k<sup>2</sup> × Luas Awal</strong>.</li>
+                        <li><strong>Urutan Perkalian Komposisi Matriks:</strong><br>
+                        Jika titik ditransformasi oleh matriks <em>M<sub>1</sub></em> lalu dilanjutkan <em>M<sub>2</sub></em>, maka <strong>M<sub>total</sub> = M<sub>2</sub> × M<sub>1</sub></strong> (urutannya dibalik dari belakang ke depan!).</li>
                     </ul>
                 </div>
             </div>
@@ -895,11 +962,13 @@
 
                 <div class="example-item">
                     <span class="level-badge lvl-hard">Tingkat 3: Sulit (HOTS)</span>
-                    <p><strong>Soal:</strong> Sebuah segitiga <em>ABC</em> memiliki luas 12 cm<sup>2</sup>. Segitiga tersebut didilatasikan dengan pusat <em>P(2, -3)</em> dan faktor skala <em>k = -3</em>, kemudian dirotasikan sejauh 90°. Berapakah luas bayangan segitiga tersebut?</p>
+                    <p><strong>Soal:</strong> Titik <em>K(5, -2)</em> dicerminkan terhadap garis <em>x = 1</em>, kemudian dilanjutkan pencerminan terhadap garis <em>x = 4</em>, lalu didilatasikan dengan pusat <em>O(0, 0)</em> dan faktor skala <em>k = 2</em>. Tentukan bayangan akhir titik <em>K</em>!</p>
                     <div class="solution">
-                        <strong>Pembahasan (Menggunakan Trik Luas):</strong><br>
-                        Ingat bahwa rotasi tidak mengubah luas bangun. Hanya dilatasi yang mengubah luas sebesar <em>k<sup>2</sup></em>.<br>
-                        Luas Bayangan = <em>k<sup>2</sup> × Luas Awal = (-3)<sup>2</sup> × 12 = 9 × 12 = <strong>108 cm<sup>2</sup></strong></em>.
+                        <strong>Pembahasan (Menggunakan Trik Dua Refleksi Sejajar):</strong><br>
+                        1. Refleksi <em>x = 1</em> dilanjutkan <em>x = 4</em> sama dengan Translasi <em>T = (2(4 - 1), 0) = (6, 0)</em>.<br>
+                        Maka <em>K'(5 + 6, -2 + 0) = (11, -2)</em>.<br>
+                        2. Dilanjutkan dilatasi pusat <em>O(0, 0)</em> skala <em>k = 2</em>:<br>
+                        <em>K''(2 × 11, 2 × (-2)) = <strong>K''(22, -4)</strong></em>.
                     </div>
                 </div>
             </div>
@@ -953,7 +1022,7 @@
                 </div>
 
                 <div class="quiz-item">
-                    <strong>5.</strong> Sebuah persegi panjang luasnya 20 cm<sup>2</sup> ditransformasikan oleh matriks [ [2, 1], [1, 3] ]. Luas bayangannya adalah...
+                    <strong>5.</strong> Sebuah persegi panjang luasnya 20 cm<sup>2</sup> ditransformasikan oleh matriks <span class="matrix"><span>2  1</span><span>1  3</span></span>. Luas bayangannya adalah...
                     <div class="quiz-options">
                         <label><input type="radio" name="b3q5" value="A"> A. 100 cm<sup>2</sup></label>
                         <label><input type="radio" name="b3q5" value="B"> B. 120 cm<sup>2</sup></label>
@@ -1007,4 +1076,5 @@
             }
         }
     </script>
-</body>                                                   </html>
+</body>
+                </html>
