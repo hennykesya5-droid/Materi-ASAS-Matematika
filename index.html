@@ -3,302 +3,1008 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pusat Belajar Matematika Interaktif</title>
+    <title>AeroMath — Modul Belajar Matematika Lengkap</title>
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
+            /* Soft Frutiger Aero Palette (Calming Sky, Mint & Glass) */
+            --bg-top: #d7eef8;
+            --bg-mid: #e6f5f0;
+            --bg-bottom: #d9ece4;
+            --glass-bg: rgba(255, 255, 255, 0.76);
+            --glass-border: rgba(255, 255, 255, 0.85);
+            --glass-shadow: 0 8px 32px rgba(31, 88, 115, 0.08);
+            --primary: #1b7fa6;
+            --primary-soft: #2a9bc4;
+            --accent-green: #2d8a68;
+            --accent-mint: #e3f6ef;
+            --accent-sky: #e4f3fa;
+            --text-dark: #1e3542;
+            --text-muted: #4b6775;
+            --trick-bg: rgba(232, 248, 241, 0.85);
+            --trick-border: #3ba37c;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--primary), #3b82f6);
-            color: white;
-            text-align: center;
-            padding: 2.5rem 1rem;
-        }
-
-        header h1 {
-            margin: 0 0 0.5rem 0;
-            font-size: 2rem;
-        }
-
-        header p {
-            margin: 0;
-            opacity: 0.9;
-            font-size: 1.05rem;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 1.5rem auto;
-            padding: 0 1rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--border-color);
-        }
-
-        h2 {
-            color: var(--primary);
-            margin-top: 0;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            font-size: 1.4rem;
-        }
-
-        h3 {
-            color: #334155;
-            margin-top: 0;
-            font-size: 1.15rem;
-        }
-
-        ul {
-            padding-left: 1.2rem;
-        }
-
-        li {
-            margin-bottom: 0.75rem;
-        }
-
-        .formula-box {
-            background: #e0e7ff;
-            border-left: 4px solid var(--primary);
-            padding: 1rem;
-            border-radius: 4px;
-            margin: 1rem 0;
-            font-family: monospace;
-            font-weight: bold;
-            color: #312e81;
-            font-size: 1rem;
-        }
-
-        .interactive-section {
-            background: #f1f5f9;
-            padding: 1.25rem;
-            border-radius: 8px;
-            margin-top: 1.5rem;
-        }
-
-        .input-grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-        }
-
-        .input-grid-3 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 0.8rem;
-        }
-
-        @media (max-width: 600px) {
-            .input-grid-2, .input-grid-3 {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .input-group {
-            margin-bottom: 1rem;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-            font-size: 0.9rem;
-        }
-
-        input {
-            width: 100%;
-            padding: 0.65rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 1rem;
+        * {
             box-sizing: border-box;
         }
 
-        button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            line-height: 1.7;
+            min-height: 100vh;
+            background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 55%, var(--bg-bottom) 100%);
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Frutiger Aero Subtle SVG Background (Hills, Bubbles & Soft Sunbeams) */
+        .aero-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            transition: background-color 0.2s;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.55; /* Soft so it won't distract studying */
         }
 
-        button:hover {
-            background-color: var(--primary-hover);
+        /* Glossy Aero Header */
+        header {
+            background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(215, 241, 252, 0.72) 50%, rgba(195, 233, 248, 0.78) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px rgba(27, 127, 166, 0.08);
+            text-align: center;
+            padding: 2rem 1rem 1.5rem;
+            position: relative;
         }
 
-        .result-box {
-            margin-top: 1rem;
-            padding: 1rem;
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 45%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 100%);
+            border-radius: 0 0 50% 50%;
+            pointer-events: none;
+        }
+
+        .badge-aero {
+            display: inline-block;
+            background: linear-gradient(180deg, #ffffff 0%, #dcf2fa 100%);
+            border: 1px solid #a8dcf0;
+            color: var(--primary);
+            padding: 0.25rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            box-shadow: 0 2px 6px rgba(27, 127, 166, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.9rem;
+            color: #135470;
+            letter-spacing: -0.3px;
+        }
+
+        header p {
+            margin: 0.4rem auto 0;
+            max-width: 650px;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        /* Navigation Tabs (Glossy Pills) */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            max-width: 960px;
+            margin: 1.5rem auto 0;
+            padding: 0 1rem;
+        }
+
+        .tab-btn {
+            background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(232,246,252,0.8) 100%);
+            border: 1px solid rgba(255,255,255,0.95);
+            box-shadow: 0 3px 10px rgba(27, 127, 166, 0.08);
+            color: var(--text-dark);
+            padding: 0.65rem 1.2rem;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
             background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(180deg, #4db4dc 0%, #1b7fa6 100%);
+            color: #ffffff;
+            border-color: #166a8c;
+            box-shadow: 0 4px 14px rgba(27, 127, 166, 0.28), inset 0 1px 1px rgba(255,255,255,0.6);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 960px;
+            margin: 1.5rem auto 3rem;
+            padding: 0 1rem;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.35s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            box-shadow: var(--glass-shadow);
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            color: #135c7a;
+            margin-top: 0;
+            font-size: 1.45rem;
+            border-bottom: 2px solid rgba(27, 127, 166, 0.15);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h3 {
+            color: #1c6a8a;
+            margin-top: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        /* Formula Boxes */
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 0.9rem;
+            margin: 1rem 0;
+        }
+
+        .formula-box {
+            background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(228, 244, 252, 0.85) 100%);
+            border: 1px solid #bce2f2;
+            border-left: 4px solid var(--primary);
+            border-radius: 10px;
+            padding: 0.9rem 1rem;
+            box-shadow: 0 2px 8px rgba(27, 127, 166, 0.05);
+        }
+
+        .formula-title {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .formula-math {
+            font-family: 'Cambria Math', 'Segoe UI', monospace;
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: #133c4e;
+        }
+
+        /* Fast Trick / Cara Cepat Box */
+        .trick-box {
+            background: var(--trick-bg);
+            border: 1px solid #b5e3d1;
+            border-left: 5px solid var(--trick-border);
+            border-radius: 12px;
+            padding: 1.2rem 1.3rem;
+            margin: 1.3rem 0;
+        }
+
+        .trick-header {
+            font-weight: 700;
+            color: #1f6e50;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Table Styling */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border: 1px solid #c5e3f0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.85);
+            font-size: 0.93rem;
+        }
+
+        th {
+            background: linear-gradient(180deg, #dff1fa 0%, #cce8f6 100%);
+            color: #135470;
+            text-align: left;
+            padding: 0.7rem 0.9rem;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 0.65rem 0.9rem;
+            border-top: 1px solid #e1f0f7;
+        }
+
+        /* Examples (Mudah, Sedang, Sulit) */
+        .example-item {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid #d4eaf5;
+            border-radius: 12px;
+            padding: 1.1rem 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .lvl-easy { background: #dcf5e9; color: #1e6f4c; border: 1px solid #a8dfc5; }
+        .lvl-med { background: #e0f0fa; color: #19628a; border: 1px solid #add6ef; }
+        .lvl-hard { background: #f3e8fa; color: #67328c; border: 1px solid #d7b8ed; }
+
+        .solution {
+            margin-top: 0.7rem;
+            padding-top: 0.7rem;
+            border-top: 1px dashed #bddbe8;
+            color: #2c4a59;
+            font-size: 0.95rem;
+        }
+
+        /* Practice Quiz (Optional / Self-Paced) */
+        .quiz-item {
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid #cde4f0;
+            border-radius: 12px;
+            padding: 1.15rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 0.45rem;
+            margin: 0.7rem 0;
+        }
+
+        .quiz-options label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(240, 249, 253, 0.9);
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            border: 1px solid #d5eaf5;
+            cursor: pointer;
+            font-size: 0.94rem;
+            transition: background 0.2s;
+        }
+
+        .quiz-options label:hover {
+            background: #e1f3fc;
+        }
+
+        .btn-check {
+            background: linear-gradient(180deg, #54b8df 0%, #1b7fa6 100%);
+            color: white;
+            border: 1px solid #176b8c;
+            padding: 0.45rem 1rem;
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(27, 127, 166, 0.2), inset 0 1px 0 rgba(255,255,255,0.5);
+        }
+
+        .btn-check:hover {
+            filter: brightness(1.05);
+        }
+
+        .quiz-feedback {
+            margin-top: 0.7rem;
+            padding: 0.75rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            display: none;
+        }
+
+        .fb-correct {
+            background: #dff6ec;
+            border: 1px solid #9fdcc0;
+            color: #16593c;
+        }
+
+        .fb-wrong {
+            background: #fceaea;
+            border: 1px solid #eebaba;
+            color: #7d2626;
         }
 
         footer {
             text-align: center;
-            padding: 1.5rem;
+            padding: 1.5rem 1rem 2.5rem;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.55rem; }
+            .glass-card { padding: 1.25rem; }
+            .tab-btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Soft Frutiger Aero Decorative Background -->
+    <svg class="aero-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bubbleGrad" cx="30%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+                <stop offset="65%" stop-color="#a8e2f8" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#4bb4de" stop-opacity="0.45"/>
+            </radialGradient>
+            <linearGradient id="hill1" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#b7ebd4" stop-opacity="0.65"/>
+                <stop offset="100%" stop-color="#8cd6b6" stop-opacity="0.45"/>
+            </linearGradient>
+            <linearGradient id="hill2" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#cbeff9" stop-opacity="0.7"/>
+                <stop offset="100%" stop-color="#9ad7ef" stop-opacity="0.4"/>
+            </linearGradient>
+            <linearGradient id="sunBeam" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+            </linearGradient>
+        </defs>
+        <!-- Soft Light Beams -->
+        <polygon points="0,0 450,0 850,900 200,900" fill="url(#sunBeam)"/>
+        <polygon points="600,0 950,0 1440,700 1100,900" fill="url(#sunBeam)"/>
+        <!-- Rolling Soft Aero Hills -->
+        <path d="M-100,760 Q360,610 820,750 T1550,690 L1550,950 L-100,950 Z" fill="url(#hill2)"/>
+        <path d="M-100,820 Q480,690 980,810 T1550,760 L1550,950 L-100,950 Z" fill="url(#hill1)"/>
+        <!-- Glossy Water Bubbles -->
+        <circle cx="160" cy="190" r="65" fill="url(#bubbleGrad)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.6"/>
+        <ellipse cx="140" cy="168" rx="18" ry="10" transform="rotate(-25 140 168)" fill="#ffffff" fill-opacity="0.75"/>
+        
+        <circle cx="1260" cy="240" r="90" fill="url(#bubbleGrad)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.55"/>
+        <ellipse cx="1232" cy="210" rx="25" ry="13" transform="rotate(-25 1232 210)" fill="#ffffff" fill-opacity="0.7"/>
+
+        <circle cx="1140" cy="610" r="48" fill="url(#bubbleGrad)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.5"/>
+        <ellipse cx="1125" cy="595" rx="12" ry="6" transform="rotate(-25 1125 595)" fill="#ffffff" fill-opacity="0.7"/>
+
+        <circle cx="240" cy="580" r="38" fill="url(#bubbleGrad)" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.5"/>
+        <circle cx="820" cy="130" r="28" fill="url(#bubbleGrad)" stroke="#ffffff" stroke-width="1" stroke-opacity="0.5"/>
+    </svg>
+
     <header>
-        <h1>Pusat Belajar Matematika</h1>
-        <p>Modul Pembelajaran Interaktif: Fungsi, Barisan & Deret, serta Transformasi Geometri</p>
+        <div class="badge-aero">✦ Modul Pembelajaran Matematika Lengkap</div>
+        <h1>AeroMath Studio</h1>
+        <p>Ringkasan Materi Mendalam, Kumpulan Rumus Lengkap, Trik Cara Cepat, Contoh Soal Bertingkat & Latihan Mandiri</p>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" onclick="openTab('bab1', this)">1. Fungsi Komposisi & Invers</button>
+            <button class="tab-btn" onclick="openTab('bab2', this)">2. Barisan & Deret</button>
+            <button class="tab-btn" onclick="openTab('bab3', this)">3. Transformasi Geometri</button>
+        </nav>
     </header>
 
     <main class="container">
-        
-        <!-- MATERI 1: FUNGSI KOMPOSISI & INVERS -->
-        <section class="card">
-            <h2>1. Fungsi Komposisi & Invers</h2>
-            <p>Fungsi komposisi adalah penggabungan dua fungsi secara berurutan. Jika terdapat fungsi <strong>f(x)</strong> dan <strong>g(x)</strong>, maka komposisinya ditulis:</p>
-            <div class="formula-box">
-                (f ∘ g)(x) = f(g(x))  |  (g ∘ f)(x) = g(f(x))
-            </div>
-            <p>Sedangkan <strong>Fungsi Invers (f<sup>-1</sup>(x))</strong> adalah kebalikan dari suatu fungsi yang memetakan kembali hasil dari fungsi asal ke nilai asalnya.</p>
-            
-            <div class="interactive-section">
-                <h3>Simulasi Cepat: Invers Fungsi Linear f(x) = ax + b</h3>
-                <p>Masukkan nilai <em>a</em> dan <em>b</em> untuk mencari fungsi inversnya: <strong>f<sup>-1</sup>(x) = (x - b) / a</strong></p>
-                <div class="input-grid-2">
-                    <div class="input-group">
-                        <label for="valA">Nilai a (tidak boleh 0):</label>
-                        <input type="number" id="valA" value="2">
+
+        <!-- ========================================================= -->
+        <!-- BAB 1: FUNGSI KOMPOSISI & FUNGSI INVERS                   -->
+        <!-- ========================================================= -->
+        <section id="bab1" class="tab-content active">
+            <div class="glass-card">
+                <h2>1. Penjelasan Detail: Fungsi Komposisi & Invers</h2>
+                <p><strong>A. Fungsi Komposisi</strong> adalah penggabungan operasi dua buah fungsi atau lebih secara berurutan sehingga menghasilkan sebuah fungsi baru. Operasi komposisi dilambangkan dengan tanda bundaran <strong>(∘)</strong> yang dibaca <em>"bundaran"</em> atau <em>"komposisi"</em>.</p>
+                <p>Bayangkan sebuah mesin berantai: input <em>x</em> masuk ke mesin <em>g</em> terlebih dahulu menghasilkan <em>g(x)</em>, lalu hasilnya langsung dimasukkan ke mesin <em>f</em> sehingga menghasilkan <strong>f(g(x))</strong>.</p>
+                
+                <p><strong>B. Fungsi Invers (f<sup>-1</sup>)</strong> adalah fungsi kebalikan yang memetakan kembali daerah hasil (<em>range</em>) ke daerah asal (<em>domain</em>). Suatu fungsi <em>f(x)</em> mempunyai fungsi invers jika dan hanya jika fungsi tersebut merupakan <strong>fungsi bijektif (korespondensi satu-satu)</strong>. Jika <em>f(a) = b</em>, maka <strong>f<sup>-1</sup>(b) = a</strong>.</p>
+
+                <h3>Kumpulan Rumus & Sifat Lengkap</h3>
+                <div class="formula-grid">
+                    <div class="formula-box">
+                        <div class="formula-title">Definisi Komposisi 2 Fungsi</div>
+                        <div class="formula-math">(f ∘ g)(x) = f(g(x))<br>(g ∘ f)(x) = g(f(x))</div>
                     </div>
-                    <div class="input-group">
-                        <label for="valB">Nilai b:</label>
-                        <input type="number" id="valB" value="3">
+                    <div class="formula-box">
+                        <div class="formula-title">Komposisi 3 Fungsi</div>
+                        <div class="formula-math">(f ∘ g ∘ h)(x) = f(g(h(x)))</div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="formula-title">Sifat-Sifat Komposisi</div>
+                        <div class="formula-math">1. Tidak Komutatif: (f ∘ g) ≠ (g ∘ f)<br>2. Asosiatif: ((f ∘ g) ∘ h) = (f ∘ (g ∘ h))<br>3. Identitas I(x)=x: (f ∘ I) = (I ∘ f) = f</div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="formula-title">Sifat-Sifat Invers & Komposisi</div>
+                        <div class="formula-math">1. (f<sup>-1</sup>)<sup>-1</sup>(x) = f(x)<br>2. (f ∘ f<sup>-1</sup>)(x) = (f<sup>-1</sup> ∘ f)(x) = x<br>3. (f ∘ g)<sup>-1</sup>(x) = (g<sup>-1</sup> ∘ f<sup>-1</sup>)(x)<br>4. (f ∘ g ∘ h)<sup>-1</sup> = (h<sup>-1</sup> ∘ g<sup>-1</sup> ∘ f<sup>-1</sup>)</div>
                     </div>
                 </div>
-                <button type="button" onclick="hitungInvers()">Hitung Invers</button>
-                <div class="result-box" id="resultInvers">Hasil rumus invers akan tampil di sini.</div>
+
+                <div class="trick-box">
+                    <div class="trick-header">⚡ Cara Cepat & Rumus Kilat Fungsi Invers</div>
+                    <ul>
+                        <li><strong>Invers Fungsi Linear:</strong> Jika <em>f(x) = ax + b</em> → <strong>f<sup>-1</sup>(x) = (x - b) / a</strong></li>
+                        <li><strong>Invers Fungsi Pecahan (Rasional):</strong> Jika <em>f(x) = (ax + b) / (cx + d)</em>, cukup <strong>tukar posisi <em>a</em> dan <em>d</em> lalu ubah tandanya (+/-)</strong>:<br>
+                        → <strong>f<sup>-1</sup>(x) = (-dx + b) / (cx - a)</strong></li>
+                        <li><strong>Invers Fungsi Kuadrat:</strong> Jika <em>f(x) = ax<sup>2</sup> + bx + c</em> → <strong>f<sup>-1</sup>(x) = [ -b ± √(b<sup>2</sup> - 4a(c - x)) ] / 2a</strong></li>
+                        <li><strong>Invers Fungsi Akar:</strong> Jika <em>f(x) = √(ax + b)</em> → <strong>f<sup>-1</sup>(x) = (x<sup>2</sup> - b) / a</strong> (syarat x ≥ 0)</li>
+                        <li><strong>Invers Eksponen & Logaritma:</strong> Jika <em>f(x) = a<sup>x</sup></em> → <strong>f<sup>-1</sup>(x) = <sup>a</sup>log(x)</strong></li>
+                        <li><strong>Mencari Fungsi Awal di Depan:</strong> Jika diketahui <em>(f ∘ g)(x)</em> dan <em>g(x)</em>, maka <strong>f(x) = (f ∘ g)(g<sup>-1</sup>(x))</strong> (cukup substitusi invers <em>g</em> ke dalam fungsi komposisi!).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contoh Soal Bertingkat Bab 1 -->
+            <div class="glass-card">
+                <h2>Contoh Soal & Pembahasan Bertingkat</h2>
+
+                <div class="example-item">
+                    <span class="level-badge lvl-easy">Tingkat 1: Mudah</span>
+                    <p><strong>Soal:</strong> Diketahui <em>f(x) = 3x - 5</em> dan <em>g(x) = x + 2</em>. Tentukan nilai dari <em>(f ∘ g)(4)</em>!</p>
+                    <div class="solution">
+                        <strong>Pembahasan:</strong><br>
+                        Langkah 1: Hitung <em>g(4)</em> terlebih dahulu → <em>g(4) = 4 + 2 = 6</em>.<br>
+                        Langkah 2: Masukkan hasilnya ke fungsi <em>f</em> → <em>f(6) = 3(6) - 5 = 18 - 5 = <strong>13</strong></em>.
+                    </div>
+                </div>
+
+                <div class="example-item">
+                    <span class="level-badge lvl-med">Tingkat 2: Sedang</span>
+                    <p><strong>Soal:</strong> Diketahui fungsi <em>f(x) = (2x + 3) / (4x - 5)</em> untuk <em>x ≠ 5/4</em>. Tentukan rumus fungsi invers <em>f<sup>-1</sup>(x)</em>!</p>
+                    <div class="solution">
+                        <strong>Pembahasan (Menggunakan Rumus Cepat):</strong><br>
+                        Dari <em>f(x) = (2x + 3) / (4x - 5)</em>, diperoleh <em>a = 2, b = 3, c = 4, d = -5</em>.<br>
+                        Tukar <em>a</em> dan <em>d</em> lalu ubah tandanya (<em>-5</em> jadi <em>+5</em>, dan <em>2</em> jadi <em>-2</em>):<br>
+                        <strong>f<sup>-1</sup>(x) = (5x + 3) / (4x - 2)</strong>, dengan <em>x ≠ 1/2</em>.
+                    </div>
+                </div>
+
+                <div class="example-item">
+                    <span class="level-badge lvl-hard">Tingkat 3: Sulit (HOTS)</span>
+                    <p><strong>Soal:</strong> Diketahui <em>(f ∘ g)(x) = 4x<sup>2</sup> + 8x - 3</em> dan <em>g(x) = 2x + 1</em>. Tentukan rumus fungsi <em>f(x)</em>!</p>
+                    <div class="solution">
+                        <strong>Pembahasan (Trik Substitusi Invers):</strong><br>
+                        1. Cari invers dari <em>g(x) = 2x + 1</em> → <em>g<sup>-1</sup>(x) = (x - 1) / 2</em>.<br>
+                        2. Substitusi <em>g<sup>-1</sup>(x)</em> ke dalam <em>(f ∘ g)(x)</em>:<br>
+                        <em>f(x) = 4((x - 1)/2)<sup>2</sup> + 8((x - 1)/2) - 3</em><br>
+                        <em>f(x) = 4((x<sup>2</sup> - 2x + 1)/4) + 4(x - 1) - 3</em><br>
+                        <em>f(x) = (x<sup>2</sup> - 2x + 1) + 4x - 4 - 3</em><br>
+                        <strong>f(x) = x<sup>2</sup> + 2x - 6</strong>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5 Latihan Soal Mandiri Bab 1 -->
+            <div class="glass-card">
+                <h2>Latihan Mandiri (5 Soal — Opsional)</h2>
+                <p style="font-size:0.9rem; color:var(--text-muted);">Pilih jawaban yang menurutmu paling tepat, lalu klik tombol cek untuk melihat hasil dan pembahasannya.</p>
+
+                <!-- Soal 1 -->
+                <div class="quiz-item" id="b1_q1">
+                    <strong>1.</strong> Jika <em>f(x) = 2x + 1</em> dan <em>g(x) = x<sup>2</sup> - 3</em>, maka <em>(g ∘ f)(x)</em> adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b1q1" value="A"> A. 2x<sup>2</sup> - 5</label>
+                        <label><input type="radio" name="b1q1" value="B"> B. 4x<sup>2</sup> + 4x - 2</label>
+                        <label><input type="radio" name="b1q1" value="C"> C. 4x<sup>2</sup> - 2</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b1q1', 'B', 'fb_b1q1', '(g ∘ f)(x) = g(f(x)) = (2x + 1)² - 3 = (4x² + 4x + 1) - 3 = 4x² + 4x - 2.')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b1q1"></div>
+                </div>
+
+                <!-- Soal 2 -->
+                <div class="quiz-item">
+                    <strong>2.</strong> Invers dari fungsi <em>f(x) = 5x - 10</em> adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b1q2" value="A"> A. (x + 10) / 5</label>
+                        <label><input type="radio" name="b1q2" value="B"> B. (x - 10) / 5</label>
+                        <label><input type="radio" name="b1q2" value="C"> C. 5x + 10</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b1q2', 'A', 'fb_b1q2', 'Rumus cepat f(x) = ax + b → f⁻¹(x) = (x - b)/a. Karena b = -10, maka (x - (-10))/5 = (x + 10)/5.')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b1q2"></div>
+                </div>
+
+                <!-- Soal 3 -->
+                <div class="quiz-item">
+                    <strong>3.</strong> Diketahui <em>f(x) = (3x - 2) / (x + 4)</em>. Nilai dari <em>f<sup>-1</sup>(2)</em> adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b1q3" value="A"> A. 6</label>
+                        <label><input type="radio" name="b1q3" value="B"> B. 8</label>
+                        <label><input type="radio" name="b1q3" value="C"> C. 10</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b1q3', 'C', 'fb_b1q3', 'Gunakan sifat f⁻¹(2) = x ↔ f(x) = 2. Maka (3x - 2)/(x + 4) = 2 → 3x - 2 = 2x + 8 → x = 10.')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b1q3"></div>
+                </div>
+
+                <!-- Soal 4 -->
+                <div class="quiz-item">
+                    <strong>4.</strong> Jika <em>(f ∘ g)(x) = 6x + 5</em> dan <em>f(x) = 2x - 1</em>, maka <em>g(x)</em> adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b1q4" value="A"> A. 3x + 3</label>
+                        <label><input type="radio" name="b1q4" value="B"> B. 3x + 2</label>
+                        <label><input type="radio" name="b1q4" value="C"> C. 6x + 6</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b1q4', 'A', 'fb_b1q4', 'f(g(x)) = 6x + 5 → 2·g(x) - 1 = 6x + 5 → 2·g(x) = 6x + 6 → g(x) = 3x + 3.')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b1q4"></div>
+                </div>
+
+                <!-- Soal 5 -->
+                <div class="quiz-item">
+                    <strong>5.</strong> Diketahui <em>f<sup>-1</sup>(x) = x + 3</em> dan <em>g<sup>-1</sup>(x) = 2x - 1</em>. Nilai dari <em>(f ∘ g)<sup>-1</sup>(2)</em> adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b1q5" value="A"> A. 4</label>
+                        <label><input type="radio" name="b1q5" value="B"> B. 5</label>
+                        <label><input type="radio" name="b1q5" value="C"> C. 9</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b1q5', 'C', 'fb_b1q5', 'Ingat sifat: (f ∘ g)⁻¹(2) = g⁻¹(f⁻¹(2)). Hitung f⁻¹(2) = 2 + 3 = 5, lalu g⁻¹(5) = 2(5) - 1 = 9.')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b1q5"></div>
+                </div>
             </div>
         </section>
 
-        <!-- MATERI 2: BARISAN & DERET ARITMATIKA & GEOMETRI -->
-        <section class="card">
-            <h2>2. Barisan & Deret (Aritmatika & Geometri)</h2>
-            <p>Barisan adalah susunan angka dengan pola tertentu, sedangkan deret adalah penjumlahannya.</p>
-            <ul>
-                <li><strong>Aritmatika (Pola Penjumlahan/Pengurangan Tetap):</strong><br>
-                    Rumus Suku ke-n: <strong>U<sub>n</sub> = a + (n - 1)b</strong><br>
-                    Rumus Jumlah n Suku: <strong>S<sub>n</sub> = (n / 2) × (2a + (n - 1)b)</strong>
-                </li>
-                <li><strong>Geometri (Pola Perkalian/Pembagian Tetap):</strong><br>
-                    Rumus Suku ke-n: <strong>U<sub>n</sub> = a × r<sup>n-1</sup></strong><br>
-                    Rumus Jumlah n Suku: <strong>S<sub>n</sub> = a(r<sup>n</sup> - 1) / (r - 1)</strong> (untuk r > 1)
-                </li>
-            </ul>
+        <!-- ========================================================= -->
+        <!-- BAB 2: BARISAN & DERET ARITMATIKA & GEOMETRI              -->
+        <!-- ========================================================= -->
+        <section id="bab2" class="tab-content">
+            <div class="glass-card">
+                <h2>2. Penjelasan Detail: Barisan & Deret</h2>
+                <p><strong>Barisan Bilangan</strong> adalah urutan bilangan yang disusun menurut aturan atau pola tertentu. Setiap bilangan di dalamnya disebut <em>suku</em> (dilambangkan dengan <strong>U<sub>n</sub></strong>). Sedangkan <strong>Deret</strong> adalah penjumlahan seluruh suku-suku pada barisan tersebut (dilambangkan dengan <strong>S<sub>n</sub></strong>).</p>
 
-            <div class="interactive-section">
-                <h3>Kalkulator Suku ke-n Aritmatika</h3>
-                <div class="input-grid-3">
-                    <div class="input-group">
-                        <label for="sukuA">Suku Pertama (a):</label>
-                        <input type="number" id="sukuA" value="3">
+                <ul>
+                    <li><strong>Barisan & Deret Aritmatika:</strong> Selisih antara dua suku yang berurutan selalu tetap. Selisih tetap ini disebut <strong>Beda (b)</strong>, di mana <em>b = U<sub>n</sub> - U<sub>n-1</sub></em>.</li>
+                    <li><strong>Barisan & Deret Geometri:</strong> Perbandingan (hasil bagi) antara dua suku yang berurutan selalu tetap. Perbandingan tetap ini disebut <strong>Rasio (r)</strong>, di mana <em>r = U<sub>n</sub> / U<sub>n-1</sub></em>.</li>
+                    <li><strong>Deret Geometri Tak Hingga (S<sub>∞</sub>):</strong> Penjumlahan suku-suku geometri sampai tak terhingga banyaknya. Syarat agar memiliki nilai jumlah (<em>konvergen</em>) adalah rasio berada di antara -1 dan 1 (<strong>-1 < r < 1</strong>).</li>
+                </ul>
+
+                <h3>Kumpulan Rumus Lengkap</h3>
+                <div class="formula-grid">
+                    <div class="formula-box">
+                        <div class="formula-title">Aritmatika: Suku ke-n & Beda</div>
+                        <div class="formula-math">U<sub>n</sub> = a + (n - 1)b<br>b = U<sub>2</sub> - U<sub>1</sub> = U<sub>n</sub> - U<sub>n-1</sub></div>
                     </div>
-                    <div class="input-group">
-                        <label for="bedaB">Beda (b):</label>
-                        <input type="number" id="bedaB" value="4">
+                    <div class="formula-box">
+                        <div class="formula-title">Aritmatika: Jumlah n Suku (S<sub>n</sub>)</div>
+                        <div class="formula-math">S<sub>n</sub> = (n / 2)(a + U<sub>n</sub>)<br>S<sub>n</sub> = (n / 2)(2a + (n - 1)b)</div>
                     </div>
-                    <div class="input-group">
-                        <label for="sukuN">Cari Suku ke- (n):</label>
-                        <input type="number" id="sukuN" value="10">
+                    <div class="formula-box">
+                        <div class="formula-title">Aritmatika: Suku Tengah (U<sub>t</sub>)</div>
+                        <div class="formula-math">U<sub>t</sub> = (a + U<sub>n</sub>) / 2<br><em>(Berlaku jika n ganjil)</em></div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="formula-title">Geometri: Suku ke-n & Rasio</div>
+                        <div class="formula-math">U<sub>n</sub> = a · r<sup>n-1</sup><br>r = U<sub>2</sub> / U<sub>1</sub> = U<sub>n</sub> / U<sub>n-1</sub></div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="formula-title">Geometri: Jumlah n Suku (S<sub>n</sub>)</div>
+                        <div class="formula-math">S<sub>n</sub> = a(r<sup>n</sup> - 1) / (r - 1)  (jika r > 1)<br>S<sub>n</sub> = a(1 - r<sup>n</sup>) / (1 - r)  (jika r < 1)</div>
+                    </div>
+                    <div class="formula-box">
+                        <div class="formula-title">Geometri: Suku Tengah & Tak Hingga</div>
+                        <div class="formula-math">U<sub>t</sub> = √(a · U<sub>n</sub>)<br>S<sub>∞</sub> = a / (1 - r)  (-1 < r < 1)</div>
                     </div>
                 </div>
-                <button type="button" onclick="hitungAritmatika()">Hitung U<sub>n</sub> & S<sub>n</sub></button>
-                <div class="result-box" id="resultAritmatika">Hasil perhitungan akan tampil di sini.</div>
+
+                <div class="trick-box">
+                    <div class="trick-header">⚡ Cara Cepat & Rumus Kilat Barisan & Deret</div>
+                    <ul>
+                        <li><strong>Mencari Beda (b) Jika Diketahui 2 Suku Acak (U<sub>p</sub> dan U<sub>q</sub>):</strong><br>
+                        Tidak perlu eliminasi panjang! Langsung gunakan: <strong>b = (U<sub>p</sub> - U<sub>q</sub>) / (p - q)</strong></li>
+                        <li><strong>Mencari Rasio (r) Jika Diketahui 2 Suku Geometri Acak:</strong><br>
+                        Langsung gunakan: <strong>r<sup>(p - q)</sup> = U<sub>p</sub> / U<sub>q</sub></strong></li>
+                        <li><strong>Hubungan S<sub>n</sub> dan U<sub>n</sub> (Berlaku untuk SEMUA jenis deret):</strong><br>
+                        <strong>U<sub>n</sub> = S<sub>n</sub> - S<sub>n-1</sub></strong> (dan <strong>U<sub>1</sub> = S<sub>1</sub></strong>)</li>
+                        <li><strong>Trik Pantulan Bola Jatuh dari Ketinggian h<sub>0</sub> dengan Rasio Pantulan r:</strong><br>
+                        Total Panjang Lintasan Bola sampai berhenti = <strong>h<sub>0</sub> × (1 + r) / (1 - r)</strong> (atau <strong>2·S<sub>∞</sub> - h<sub>0</sub></strong>).</li>
+                        <li><strong>Trik Deret Geometri Ganjil & Genap Tak Hingga:</strong><br>
+                        Rasio antara jumlah suku genap dan ganjil adalah <strong>r = S<sub>genap</sub> / S<sub>ganjil</sub></strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contoh Soal Bertingkat Bab 2 -->
+            <div class="glass-card">
+                <h2>Contoh Soal & Pembahasan Bertingkat</h2>
+
+                <div class="example-item">
+                    <span class="level-badge lvl-easy">Tingkat 1: Mudah</span>
+                    <p><strong>Soal:</strong> Diketahui barisan geometri: 3, 6, 12, 24, ... Tentukan suku ke-7 (<em>U<sub>7</sub></em>)!</p>
+                    <div class="solution">
+                        <strong>Pembahasan:</strong><br>
+                        Suku pertama <em>a = 3</em>, rasio <em>r = 6 / 3 = 2</em>.<br>
+                        <em>U<sub>7</sub> = a · r<sup>7-1</sup> = 3 · 2<sup>6</sup> = 3 · 64 = <strong>192</strong></em>.
+                    </div>
+                </div>
+
+                <div class="example-item">
+                    <span class="level-badge lvl-med">Tingkat 2: Sedang</span>
+                    <p><strong>Soal:</strong> Suatu barisan aritmatika memiliki <em>U<sub>3</sub> = 11</em> dan <em>U<sub>8</sub> = 31</em>. Tentukan nilai suku ke-20 (<em>U<sub>20</sub></em>)!</p>
+                    <div class="solution">
+                        <strong>Pembahasan (Menggunakan Rumus Cepat):</strong><br>
+                        1. Cari beda: <em>b = (U<sub>8</sub> - U<sub>3</sub>) / (8 - 3) = (31 - 11) / 5 = 20 / 5 = 4</em>.<br>
+                        2. Hitung <em>U<sub>20</sub></em> dari <em>U<sub>8</sub></em>: <em>U<sub>20</sub> = U<sub>8</sub> + (20 - 8)b = 31 + 12(4) = 31 + 48 = <strong>79</strong></em>.
+                    </div>
+                </div>
+
+                <div class="example-item">
+                    <span class="level-badge lvl-hard">Tingkat 3: Sulit (HOTS)</span>
+                    <p><strong>Soal:</strong> Sebuah bola dijatuhkan dari ketinggian 10 meter. Setiap kali menyentuh lantai, bola memantul kembali setinggi <strong>3/5</strong> dari ketinggian sebelumnya. Tentukan panjang seluruh lintasan bola sampai berhenti!</p>
+                    <div class="solution">
+                        <strong>Pembahasan (Menggunakan Trik Bola Memantul):</strong><br>
+                        Diketahui <em>h<sub>0</sub> = 10</em> dan rasio <em>r = 3/5</em>.<br>
+                        Total Lintasan = <em>h<sub>0</sub> × (1 + r) / (1 - r)</em><br>
+                        Total Lintasan = <em>10 × (1 + 3/5) / (1 - 3/5) = 10 × (8/5) / (2/5) = 10 × 4 = <strong>40 meter</strong></em>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5 Latihan Soal Mandiri Bab 2 -->
+            <div class="glass-card">
+                <h2>Latihan Mandiri (5 Soal — Opsional)</h2>
+
+                <div class="quiz-item">
+                    <strong>1.</strong> Suku ke-15 dari barisan aritmatika 4, 7, 10, 13, ... adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b2q1" value="A"> A. 43</label>
+                        <label><input type="radio" name="b2q1" value="B"> B. 46</label>
+                        <label><input type="radio" name="b2q1" value="C"> C. 49</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b2q1', 'B', 'fb_b2q1', 'a = 4, b = 3. Maka U₁₅ = 4 + (15 - 1)(3) = 4 + 42 = 46.')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b2q1"></div>
+                </div>
+
+                <div class="quiz-item">
+                    <strong>2.</strong> Jumlah 10 suku pertama dari deret aritmatika 2 + 6 + 10 + 14 + ... adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b2q2" value="A"> A. 200</label>
+                        <label><input type="radio" name="b2q2" value="B"> B. 180</label>
+                        <label><input type="radio" name="b2q2" value="C"> C. 220</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b2q2', 'A', 'fb_b2q2', 'a = 2, b = 4, n = 10. S₁₀ = (10/2)(2(2) + 9(4)) = 5(4 + 36) = 5 × 40 = 200.')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b2q2"></div>
+                </div>
+
+                <div class="quiz-item">
+                    <strong>3.</strong> Jumlah deret geometri tak hingga: 18 + 6 + 2 + 2/3 + ... adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b2q3" value="A"> A. 24</label>
+                        <label><input type="radio" name="b2q3" value="B"> B. 27</label>
+                        <label><input type="radio" name="b2q3" value="C"> C. 36</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b2q3', 'B', 'fb_b2q3', 'a = 18, r = 6/18 = 1/3. S∞ = a / (1 - r) = 18 / (1 - 1/3) = 18 / (2/3) = 27.')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b2q3"></div>
+                </div>
+
+                <div class="quiz-item">
+                    <strong>4.</strong> Diketahui jumlah <em>n</em> suku pertama suatu deret adalah <em>S<sub>n</sub> = 2n<sup>2</sup> + 3n</em>. Nilai suku ke-5 (<em>U<sub>5</sub></em>) adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b2q4" value="A"> A. 21</label>
+                        <label><input type="radio" name="b2q4" value="B"> B. 25</label>
+                        <label><input type="radio" name="b2q4" value="C"> C. 65</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b2q4', 'A', 'fb_b2q4', 'Gunakan U₅ = S₅ - S₄. S₅ = 2(25) + 15 = 65; S₄ = 2(16) + 12 = 44. Jadi U₅ = 65 - 44 = 21.')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b2q4"></div>
+                </div>
+
+                <div class="quiz-item">
+                    <strong>5.</strong> Pada barisan geometri diketahui <em>U<sub>2</sub> = 6</em> dan <em>U<sub>5</sub> = 48</em>. Suku pertama barisan tersebut adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b2q5" value="A"> A. 2</label>
+                        <label><input type="radio" name="b2q5" value="B"> B. 3</label>
+                        <label><input type="radio" name="b2q5" value="C"> C. 4</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b2q5', 'B', 'fb_b2q5', 'r^(5-2) = U₅/U₂ → r³ = 48/6 = 8 → r = 2. Karena U₂ = a·r = 6, maka a = 6/2 = 3.')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b2q5"></div>
+                </div>
             </div>
         </section>
 
-        <!-- MATERI 3: TRANSFORMASI GEOMETRI -->
-        <section class="card">
-            <h2>3. Transformasi Geometri</h2>
-            <p>Transformasi geometri mengubah posisi atau ukuran suatu objek titik <strong>(x, y)</strong> pada bidang koordinat. Empat jenis utamanya:</p>
-            <ul>
-                <li><strong>Translasi (Pergeseran):</strong> Digeser sejauh (a, b) → <strong>P'(x + a, y + b)</strong></li>
-                <li><strong>Refleksi (Pencerminan):</strong> Dicerminkan terhadap sumbu-x → <strong>P'(x, -y)</strong></li>
-                <li><strong>Rotasi (Perputaran):</strong> Berpusat di titik (0, 0) sebesar sudut tertentu (misal 90° berlawanan jarum jam → <strong>P'(-y, x)</strong>).</li>
-                <li><strong>Dilatasi (Perkalian/Skala):</strong> Diperbesar atau diperkecil dengan faktor skala k → <strong>P'(k·x, k·y)</strong></li>
-            </ul>
+        <!-- ========================================================= -->
+        <!-- BAB 3: TRANSFORMASI GEOMETRI                              -->
+        <!-- ========================================================= -->
+        <section id="bab3" class="tab-content">
+            <div class="glass-card">
+                <h2>3. Penjelasan Detail: Transformasi Geometri</h2>
+                <p><strong>Transformasi Geometri</strong> adalah proses perpindahan atau perubahan posisi, arah, maupun ukuran suatu objek geometri (titik, garis, atau kurva) pada bidang koordinat Cartesius <em>(x, y)</em> menjadi bayangan baru <strong>(x', y')</strong>.</p>
+                <ol>
+                    <li><strong>Translasi (Pergeseran):</strong> Memindahkan setiap titik dengan jarak dan arah yang sama tanpa mengubah bentuk atau ukuran.</li>
+                    <li><strong>Refleksi (Pencerminan):</strong> Memindahkan titik menggunakan sifat cermin datar (jarak objek ke cermin sama dengan jarak cermin ke bayangan).</li>
+                    <li><strong>Rotasi (Perputaran):</strong> Memutar titik terhadap suatu titik pusat tertentu sejauh sudut <em>θ</em>. Sudut positif (+) berarti berlawanan arah jarum jam, sedangkan negatif (-) searah jarum jam.</li>
+                    <li><strong>Dilatasi (Perkalian/Perbesaran):</strong> Mengubah ukuran objek (memperbesar atau memperkecil) berdasarkan titik pusat dan faktor skala <em>k</em>.</li>
+                </ol>
+
+                <h3>Tabel Rumus Lengkap Transformasi Titik P(x, y)</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Jenis Transformasi</th>
+                                <th>Keterangan / Cermin / Pusat</th>
+                                <th>Bayangan P'(x', y')</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Translasi</strong></td>
+                                <td>Digeser oleh vektor T = (a, b)</td>
+                                <td><strong>(x + a, y + b)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Refleksi</strong></td>
+                                <td>Terhadap Sumbu-X (garis y = 0)</td>
+                                <td><strong>(x, -y)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Refleksi</strong></td>
+                                <td>Terhadap Sumbu-Y (garis x = 0)</td>
+                                <td><strong>(-x, y)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Refleksi</strong></td>
+                                <td>Terhadap Titik Asal O(0, 0)</td>
+                                <td><strong>(-x, -y)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Refleksi</strong></td>
+                                <td>Terhadap Garis y = x</td>
+                                <td><strong>(y, x)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Refleksi</strong></td>
+                                <td>Terhadap Garis y = -x</td>
+                                <td><strong>(-y, -x)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Refleksi</strong></td>
+                                <td>Terhadap Garis x = h</td>
+                                <td><strong>(2h - x, y)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Refleksi</strong></td>
+                                <td>Terhadap Garis y = k</td>
+                                <td><strong>(x, 2k - y)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rotasi O(0,0)</strong></td>
+                                <td>Sudut +90° atau -270°</td>
+                                <td><strong>(-y, x)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rotasi O(0,0)</strong></td>
+                                <td>Sudut -90° atau +270°</td>
+                                <td><strong>(y, -x)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rotasi O(0,0)</strong></td>
+                                <td>Sudut ±180°</td>
+                                <td><strong>(-x, -y)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rotasi Pusat (a, b)</strong></td>
+                                <td>Sudut θ berlawanan jarum jam</td>
+                                <td>x' = a + (x-a)cosθ - (y-b)sinθ<br>y' = b + (x-a)sinθ + (y-b)cosθ</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dilatasi O(0,0)</strong></td>
+                                <td>Faktor skala k</td>
+                                <td><strong>(k·x, k·y)</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dilatasi Pusat (a, b)</strong></td>
+                                <td>Faktor skala k</td>
+                                <td><strong>(a + k(x - a), b + k(y - b))</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="trick-box">
+                    <div class="trick-header">⚡ Cara Cepat & Rumus Kilat Transformasi Geometri</div>
+                    <ul>
+                        <li><strong>Trik Mencari Bayangan Garis / Kurva:</strong><br>
+                        1. Tentukan rumus bayangan <em>x'</em> dan <em>y'</em>.<br>
+                        2. Ubah menjadi bentuk <strong>x = ...</strong> dan <strong>y = ...</strong>.<br>
+                        3. Substitusikan <em>x</em> dan <em>y</em> yang baru ke dalam persamaan garis/kurva awal, lalu hilangkan tanda aksen (').</li>
+                        <li><strong>Trik Translasi Garis <em>Ax + By = C</em> oleh T(a, b):</strong><br>
+                        Langsung tulis: <strong>A(x - a) + B(y - b) = C</strong> (perhatikan tanda kurang pada <em>a</em> dan <em>b</em>!).</li>
+                        <li><strong>Trik Luas Bangun Hasil Transformasi Matriks M:</strong><br>
+                        Jika suatu bangun datar berluas <strong>L</strong> ditransformasikan oleh matriks <strong>M</strong> (atau dilatasi skala <em>k</em>), maka:<br>
+                        <strong>Luas Bayangan = |det(M)| × L</strong> (untuk dilatasi skala <em>k</em>, <strong>Luas Bayangan = k<sup>2</sup> × L</strong>).</li>
+                        <li><strong>Komposisi Transformasi Matriks:</strong><br>
+                        Jika titik ditransformasi oleh M<sub>1</sub> lalu dilanjutkan M<sub>2</sub>, perkalian matriksnya dibalik: <strong>M<sub>total</sub> = M<sub>2</sub> × M<sub>1</sub></strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contoh Soal Bertingkat Bab 3 -->
+            <div class="glass-card">
+                <h2>Contoh Soal & Pembahasan Bertingkat</h2>
+
+                <div class="example-item">
+                    <span class="level-badge lvl-easy">Tingkat 1: Mudah</span>
+                    <p><strong>Soal:</strong> Titik <em>A(4, -7)</em> dicerminkan terhadap garis <em>y = x</em>, kemudian ditranslasikan oleh <em>T = (-2, 5)</em>. Tentukan koordinat bayangan akhirnya!</p>
+                    <div class="solution">
+                        <strong>Pembahasan:</strong><br>
+                        1. Refleksi terhadap garis <em>y = x</em> (tukar posisi x dan y): <em>A(4, -7) → A'(-7, 4)</em>.<br>
+                        2. Translasi oleh <em>T(-2, 5)</em>: <em>A''(-7 + (-2), 4 + 5) = <strong>A''(-9, 9)</strong></em>.
+                    </div>
+                </div>
+
+                <div class="example-item">
+                    <span class="level-badge lvl-med">Tingkat 2: Sedang</span>
+                    <p><strong>Soal:</strong> Tentukan persamaan bayangan garis <em>2x - 3y + 6 = 0</em> setelah ditranslasikan oleh <em>T = (4, -1)</em>!</p>
+                    <div class="solution">
+                        <strong>Pembahasan (Menggunakan Rumus Cepat Translasi Garis):</strong><br>
+                        Substitusi <em>x → (x - 4)</em> dan <em>y → (y - (-1)) = (y + 1)</em>:<br>
+                        <em>2(x - 4) - 3(y + 1) + 6 = 0</em><br>
+                        <em>2x - 8 - 3y - 3 + 6 = 0</em><br>
+                        <strong>2x - 3y - 5 = 0</strong>.
+                    </div>
+                </div>
+
+                <div class="example-item">
+                    <span class="level-badge lvl-hard">Tingkat 3: Sulit (HOTS)</span>
+                    <p><strong>Soal:</strong> Sebuah segitiga <em>ABC</em> memiliki luas 12 cm<sup>2</sup>. Segitiga tersebut didilatasikan dengan pusat <em>P(2, -3)</em> dan faktor skala <em>k = -3</em>, kemudian dirotasikan sejauh 90°. Berapakah luas bayangan segitiga tersebut?</p>
+                    <div class="solution">
+                        <strong>Pembahasan (Menggunakan Trik Luas):</strong><br>
+                        Ingat bahwa rotasi tidak mengubah luas bangun. Hanya dilatasi yang mengubah luas sebesar <em>k<sup>2</sup></em>.<br>
+                        Luas Bayangan = <em>k<sup>2</sup> × Luas Awal = (-3)<sup>2</sup> × 12 = 9 × 12 = <strong>108 cm<sup>2</sup></strong></em>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5 Latihan Soal Mandiri Bab 3 -->
+            <div class="glass-card">
+                <h2>Latihan Mandiri (5 Soal — Opsional)</h2>
+
+                <div class="quiz-item">
+                    <strong>1.</strong> Bayangan titik <em>P(-3, 5)</em> jika dicerminkan terhadap garis <em>x = 2</em> adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b3q1" value="A"> A. (7, 5)</label>
+                        <label><input type="radio" name="b3q1" value="B"> B. (-1, 5)</label>
+                        <label><input type="radio" name="b3q1" value="C"> C. (-3, -1)</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b3q1', 'A', 'fb_b3q1', 'Rumus refleksi x = h adalah (2h - x, y). Maka (2(2) - (-3), 5) = (4 + 3, 5) = (7, 5).')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b3q1"></div>
+                </div>
+
+                <div class="quiz-item">
+                    <strong>2.</strong> Titik <em>B(6, -2)</em> dirotasikan sebesar 90° berlawanan arah jarum jam terhadap titik pusat <em>O(0, 0)</em>. Bayangannya adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b3q2" value="A"> A. (-2, -6)</label>
+                        <label><input type="radio" name="b3q2" value="B"> B. (2, 6)</label>
+                        <label><input type="radio" name="b3q2" value="C"> C. (-6, 2)</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b3q2', 'B', 'fb_b3q2', 'Rotasi +90° mengubah (x, y) menjadi (-y, x). Maka (6, -2) → (-(-2), 6) = (2, 6).')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b3q2"></div>
+                </div>
+
+                <div class="quiz-item">
+                    <strong>3.</strong> Bayangan titik <em>C(5, 1)</em> oleh dilatasi dengan pusat <em>P(2, 3)</em> dan faktor skala <em>k = 3</em> adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b3q3" value="A"> A. (15, 3)</label>
+                        <label><input type="radio" name="b3q3" value="B"> B. (11, -3)</label>
+                        <label><input type="radio" name="b3q3" value="C"> C. (9, 3)</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b3q3', 'B', 'fb_b3q3', 'x\' = 2 + 3(5 - 2) = 2 + 9 = 11; y\' = 3 + 3(1 - 3) = 3 - 6 = -3. Jadi bayangannya (11, -3).')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b3q3"></div>
+                </div>
+
+                <div class="quiz-item">
+                    <strong>4.</strong> Persamaan bayangan garis <em>y = 3x - 4</em> jika dicerminkan terhadap sumbu-X adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b3q4" value="A"> A. y = -3x + 4</label>
+                        <label><input type="radio" name="b3q4" value="B"> B. y = -3x - 4</label>
+                        <label><input type="radio" name="b3q4" value="C"> C. y = 3x + 4</label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b3q4', 'A', 'fb_b3q4', 'Refleksi sumbu-X mengubah y menjadi -y. Maka -y = 3x - 4 → kalikan (-1) menjadi y = -3x + 4.')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b3q4"></div>
+                </div>
+
+                <div class="quiz-item">
+                    <strong>5.</strong> Sebuah persegi panjang luasnya 20 cm<sup>2</sup> ditransformasikan oleh matriks [ [2, 1], [1, 3] ]. Luas bayangannya adalah...
+                    <div class="quiz-options">
+                        <label><input type="radio" name="b3q5" value="A"> A. 100 cm<sup>2</sup></label>
+                        <label><input type="radio" name="b3q5" value="B"> B. 120 cm<sup>2</sup></label>
+                        <label><input type="radio" name="b3q5" value="C"> C. 140 cm<sup>2</sup></label>
+                    </div>
+                    <button class="btn-check" onclick="checkQuiz('b3q5', 'A', 'fb_b3q5', 'Determinan matriks = (2×3) - (1×1) = 6 - 1 = 5. Luas bayangan = |5| × 20 = 100 cm².')">Cek Jawaban</button>
+                    <div class="quiz-feedback" id="fb_b3q5"></div>
+                </div>
+            </div>
         </section>
 
     </main>
 
     <footer>
-        <p>© 2026 Pusat Belajar Matematika Interaktif.</p>
+        <p>© 2026 AeroMath Studio • Ruang Belajar Matematika Mandiri</p>
     </footer>
 
     <script>
-        // Fungsi Simulasi Invers
-        function hitungInvers() {
-            let a = parseFloat(document.getElementById('valA').value);
-            let b = parseFloat(document.getElementById('valB').value);
-            let resBox = document.getElementById('resultInvers');
+        // Tab Switching Logic
+        function openTab(tabId, btnElement) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(c => c.classList.remove('active'));
 
-            if (isNaN(a) || isNaN(b)) {
-                resBox.innerHTML = "Mohon isi nilai a dan b dengan angka.";
-                return;
-            }
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(b => b.classList.remove('active'));
 
-            if (a === 0) {
-                resBox.innerHTML = "Nilai 'a' tidak boleh 0 agar fungsi memiliki invers linear!";
-                return;
-            }
-
-            let sign = b >= 0 ? `- ${Math.abs(b)}` : `+ ${Math.abs(b)}`;
-            let bDisplay = b >= 0 ? `+ ${Math.abs(b)}` : `- ${Math.abs(b)}`;
-            resBox.innerHTML = `Jika f(x) = ${a}x ${bDisplay}, maka Fungsi Inversnya adalah:<br><strong>f<sup>-1</sup>(x) = (x ${sign}) / ${a}</strong>`;
+            document.getElementById(tabId).classList.add('active');
+            btnElement.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Fungsi Kalkulator Aritmatika
-        function hitungAritmatika() {
-            let a = parseFloat(document.getElementById('sukuA').value);
-            let b = parseFloat(document.getElementById('bedaB').value);
-            let n = parseInt(document.getElementById('sukuN').value);
-            let resBox = document.getElementById('resultAritmatika');
+        // Optional Self-Paced Quiz Checker
+        function checkQuiz(questionName, correctAnswer, feedbackId, explanation) {
+            const selected = document.querySelector(`input[name="${questionName}"]:checked`);
+            const fbBox = document.getElementById(feedbackId);
 
-            if (isNaN(a) || isNaN(b) || isNaN(n) || n <= 0) {
-                resBox.innerHTML = "Mohon masukkan angka yang valid dan nilai n > 0.";
+            fbBox.style.display = 'block';
+
+            if (!selected) {
+                fbBox.className = 'quiz-feedback fb-wrong';
+                fbBox.innerHTML = 'Silakan pilih salah satu opsi jawaban terlebih dahulu (opsional).';
                 return;
             }
 
-            let un = a + (n - 1) * b;
-            let sn = (n / 2) * (2 * a + (n - 1) * b);
-
-            resBox.innerHTML = `Suku ke-${n} (U<sub>${n}</sub>) = <strong>${un}</strong><br>Jumlah ${n} Suku Pertama (S<sub>${n}</sub>) = <strong>${sn}</strong>`;
+            if (selected.value === correctAnswer) {
+                fbBox.className = 'quiz-feedback fb-correct';
+                fbBox.innerHTML = `<strong>✓ Tepat sekali!</strong><br>${explanation}`;
+            } else {
+                fbBox.className = 'quiz-feedback fb-wrong';
+                fbBox.innerHTML = `<strong>✕ Belum tepat (Jawaban benar: ${correctAnswer}).</strong><br>${explanation}`;
+            }
         }
     </script>
-</body>
-</html>
+</body>                                                   </html>
