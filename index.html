@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusat Belajar Matematika Interaktif</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+        }
+
+        header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2rem;
+        }
+
+        header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1.05rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-top: 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        h3 {
+            color: #334155;
+            margin-top: 0;
+            font-size: 1.15rem;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+        }
+
+        .formula-box {
+            background: #e0e7ff;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-weight: bold;
+            color: #312e81;
+            font-size: 1rem;
+        }
+
+        .interactive-section {
+            background: #f1f5f9;
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .input-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+
+        .input-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .input-grid-2, .input-grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.65rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .result-box {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Pusat Belajar Matematika</h1>
+        <p>Modul Pembelajaran Interaktif: Fungsi, Barisan & Deret, serta Transformasi Geometri</p>
+    </header>
+
+    <main class="container">
+        
+        <!-- MATERI 1: FUNGSI KOMPOSISI & INVERS -->
+        <section class="card">
+            <h2>1. Fungsi Komposisi & Invers</h2>
+            <p>Fungsi komposisi adalah penggabungan dua fungsi secara berurutan. Jika terdapat fungsi <strong>f(x)</strong> dan <strong>g(x)</strong>, maka komposisinya ditulis:</p>
+            <div class="formula-box">
+                (f ∘ g)(x) = f(g(x))  |  (g ∘ f)(x) = g(f(x))
+            </div>
+            <p>Sedangkan <strong>Fungsi Invers (f<sup>-1</sup>(x))</strong> adalah kebalikan dari suatu fungsi yang memetakan kembali hasil dari fungsi asal ke nilai asalnya.</p>
+            
+            <div class="interactive-section">
+                <h3>Simulasi Cepat: Invers Fungsi Linear f(x) = ax + b</h3>
+                <p>Masukkan nilai <em>a</em> dan <em>b</em> untuk mencari fungsi inversnya: <strong>f<sup>-1</sup>(x) = (x - b) / a</strong></p>
+                <div class="input-grid-2">
+                    <div class="input-group">
+                        <label for="valA">Nilai a (tidak boleh 0):</label>
+                        <input type="number" id="valA" value="2">
+                    </div>
+                    <div class="input-group">
+                        <label for="valB">Nilai b:</label>
+                        <input type="number" id="valB" value="3">
+                    </div>
+                </div>
+                <button type="button" onclick="hitungInvers()">Hitung Invers</button>
+                <div class="result-box" id="resultInvers">Hasil rumus invers akan tampil di sini.</div>
+            </div>
+        </section>
+
+        <!-- MATERI 2: BARISAN & DERET ARITMATIKA & GEOMETRI -->
+        <section class="card">
+            <h2>2. Barisan & Deret (Aritmatika & Geometri)</h2>
+            <p>Barisan adalah susunan angka dengan pola tertentu, sedangkan deret adalah penjumlahannya.</p>
+            <ul>
+                <li><strong>Aritmatika (Pola Penjumlahan/Pengurangan Tetap):</strong><br>
+                    Rumus Suku ke-n: <strong>U<sub>n</sub> = a + (n - 1)b</strong><br>
+                    Rumus Jumlah n Suku: <strong>S<sub>n</sub> = (n / 2) × (2a + (n - 1)b)</strong>
+                </li>
+                <li><strong>Geometri (Pola Perkalian/Pembagian Tetap):</strong><br>
+                    Rumus Suku ke-n: <strong>U<sub>n</sub> = a × r<sup>n-1</sup></strong><br>
+                    Rumus Jumlah n Suku: <strong>S<sub>n</sub> = a(r<sup>n</sup> - 1) / (r - 1)</strong> (untuk r > 1)
+                </li>
+            </ul>
+
+            <div class="interactive-section">
+                <h3>Kalkulator Suku ke-n Aritmatika</h3>
+                <div class="input-grid-3">
+                    <div class="input-group">
+                        <label for="sukuA">Suku Pertama (a):</label>
+                        <input type="number" id="sukuA" value="3">
+                    </div>
+                    <div class="input-group">
+                        <label for="bedaB">Beda (b):</label>
+                        <input type="number" id="bedaB" value="4">
+                    </div>
+                    <div class="input-group">
+                        <label for="sukuN">Cari Suku ke- (n):</label>
+                        <input type="number" id="sukuN" value="10">
+                    </div>
+                </div>
+                <button type="button" onclick="hitungAritmatika()">Hitung U<sub>n</sub> & S<sub>n</sub></button>
+                <div class="result-box" id="resultAritmatika">Hasil perhitungan akan tampil di sini.</div>
+            </div>
+        </section>
+
+        <!-- MATERI 3: TRANSFORMASI GEOMETRI -->
+        <section class="card">
+            <h2>3. Transformasi Geometri</h2>
+            <p>Transformasi geometri mengubah posisi atau ukuran suatu objek titik <strong>(x, y)</strong> pada bidang koordinat. Empat jenis utamanya:</p>
+            <ul>
+                <li><strong>Translasi (Pergeseran):</strong> Digeser sejauh (a, b) → <strong>P'(x + a, y + b)</strong></li>
+                <li><strong>Refleksi (Pencerminan):</strong> Dicerminkan terhadap sumbu-x → <strong>P'(x, -y)</strong></li>
+                <li><strong>Rotasi (Perputaran):</strong> Berpusat di titik (0, 0) sebesar sudut tertentu (misal 90° berlawanan jarum jam → <strong>P'(-y, x)</strong>).</li>
+                <li><strong>Dilatasi (Perkalian/Skala):</strong> Diperbesar atau diperkecil dengan faktor skala k → <strong>P'(k·x, k·y)</strong></li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Pusat Belajar Matematika Interaktif.</p>
+    </footer>
+
+    <script>
+        // Fungsi Simulasi Invers
+        function hitungInvers() {
+            let a = parseFloat(document.getElementById('valA').value);
+            let b = parseFloat(document.getElementById('valB').value);
+            let resBox = document.getElementById('resultInvers');
+
+            if (isNaN(a) || isNaN(b)) {
+                resBox.innerHTML = "Mohon isi nilai a dan b dengan angka.";
+                return;
+            }
+
+            if (a === 0) {
+                resBox.innerHTML = "Nilai 'a' tidak boleh 0 agar fungsi memiliki invers linear!";
+                return;
+            }
+
+            let sign = b >= 0 ? `- ${Math.abs(b)}` : `+ ${Math.abs(b)}`;
+            let bDisplay = b >= 0 ? `+ ${Math.abs(b)}` : `- ${Math.abs(b)}`;
+            resBox.innerHTML = `Jika f(x) = ${a}x ${bDisplay}, maka Fungsi Inversnya adalah:<br><strong>f<sup>-1</sup>(x) = (x ${sign}) / ${a}</strong>`;
+        }
+
+        // Fungsi Kalkulator Aritmatika
+        function hitungAritmatika() {
+            let a = parseFloat(document.getElementById('sukuA').value);
+            let b = parseFloat(document.getElementById('bedaB').value);
+            let n = parseInt(document.getElementById('sukuN').value);
+            let resBox = document.getElementById('resultAritmatika');
+
+            if (isNaN(a) || isNaN(b) || isNaN(n) || n <= 0) {
+                resBox.innerHTML = "Mohon masukkan angka yang valid dan nilai n > 0.";
+                return;
+            }
+
+            let un = a + (n - 1) * b;
+            let sn = (n / 2) * (2 * a + (n - 1) * b);
+
+            resBox.innerHTML = `Suku ke-${n} (U<sub>${n}</sub>) = <strong>${un}</strong><br>Jumlah ${n} Suku Pertama (S<sub>${n}</sub>) = <strong>${sn}</strong>`;
+        }
+    </script>
+</body>
+</html>
